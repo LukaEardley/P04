@@ -1,0 +1,4 @@
+TR0001	*Utopia Express*
+I00001	Bands	[RUBBER@8]	(8,7)	true
+I00002	UTEthylChem	[CHEMICAL@3]	(0,4)	true
+I03491	UTMeds	[PHARMACEUTICAL@9]	(4,6)	false
