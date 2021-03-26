@@ -1,24 +1,21 @@
-public enum Category {
+public enum ItemType {
+    CHECMICAL("CHEMICAL");
 
-    public enum ItemType {
-        CHECMICAL("CHEMICAL");
+    PHARMACEUTICAL("PHARMACEUTICAL");
 
-        PHARMACEUTICAL("PHARMACEUTICAL");
+    RUBBER("RUBBER");
 
-        RUBBER("RUBBER");
+    LEATHER("LEATHER");
 
-        LEATHER("LEATHER");
+    GLASS("GLASS");
 
-        GLASS("GLASS");
+    FABRICS("FABRICS");
 
-        FABRICS("FABRICS");
+    public String type;
 
-        public String type;
-
-        private void ItemType(String type) {
-            this.type = type;
-        }
-
+    private void ItemType(String type) {
+        this.type = type;
     }
+
 }
 

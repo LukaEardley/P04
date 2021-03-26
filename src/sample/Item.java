@@ -1,8 +1,11 @@
 package sample;
 
+import jdk.jfr.Category;
+
 public class Item {
     private String ID;
     private String Name;
+    private Category ItemType;
     private int Priority;
     private String Delivered;
     private int DestinationX;
