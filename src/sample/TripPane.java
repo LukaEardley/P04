@@ -1,6 +1,7 @@
 package sample;
 
 import csc2a.uwga.file.TripFileHandler;
+import csc2a.uwga.model.Item;
 import csc2a.uwga.model.Trip;
 
 import java.io.File;
@@ -21,7 +22,7 @@ import javafx.stage.Stage;
 public class TripPane extends StackPane {
 
     private final String dataDirectory = Paths.get("./data/trips").toAbsolutePath().normalize().toString();
-
+    private Trip trip = null;
     public TripPane(Stage stage) {
 
     }
@@ -54,7 +55,7 @@ public class TripPane extends StackPane {
 
     private void openFile(File file, StackPane stackPane) {
         try {
-            Trip trip = TripFileHandler.readTrip(file);
+            this.trip = TripFileHandler.readTrip(file);
             stackPane.getChildren().remove(0);
             //stackPane.getChildren().add(new Label(trip.getTripID()));
             stackPane.getChildren().add(AddAccordions());
@@ -62,6 +63,7 @@ public class TripPane extends StackPane {
             System.out.println("Oops file not found");
         }
     }
+
 
     public VBox AddAccordions() {
         Accordion accordion = new Accordion();
@@ -80,9 +82,8 @@ public class TripPane extends StackPane {
         return label1;
     }
 
-    public TextField createNewTextField() {
+    public TextField createNewTextField(String item) {
         TextField textField = new TextField();
-        textField.setText("Hello");
         textField.setDisable(true);
         return textField;
     }
@@ -94,45 +95,45 @@ public class TripPane extends StackPane {
         grd.getColumnConstraints().add(new ColumnConstraints(300));
 
         grd.add(this.createNewLabel("ID:"), 0, 0);
-        grd.add(this.createNewTextField(), 1, 0);
+        grd.add(this.createNewTextField(this.trip.getTripID()), 1, 0);
 
         grd.add(this.createNewLabel("Courier Name:"), 0, 1);
-        grd.add(this.createNewTextField(), 1, 1);
+        grd.add(this.createNewTextField(this.trip.getTripCourierName()), 1, 1);
 
 
         grd.add(this.createNewLabel("Priority:"), 0, 2);
-        grd.add(this.createNewTextField(), 1, 2);
+        ProgressBar pb = new ProgressBar();
+        pb.setProgress(this.trip.getTripPriority());
         grd.setPrefHeight(100);
 
         return grd;
     }
 
-    public GridPane createItemGridPane() {
+    public GridPane createItemGridPane(Item item) {
 
         GridPane grd = new GridPane();
         grd.getColumnConstraints().add(new ColumnConstraints(300));
         grd.getColumnConstraints().add(new ColumnConstraints(300));
+            grd.add(this.createNewLabel("ID:"), 0, 0);
+            grd.add(this.createNewTextField(item.getItemID()), 1, 0);
 
-        grd.add(this.createNewLabel("ID:"), 0, 0);
-        grd.add(this.createNewTextField(), 1, 0);
-
-        grd.add(this.createNewLabel("Name:"), 0, 1);
-        grd.add(this.createNewTextField(), 1, 1);
+            grd.add(this.createNewLabel("Name:"), 0, 1);
+            grd.add(this.createNewTextField(item.getItemName()), 1, 1);
 
 
-        grd.add(this.createNewLabel("Category:"), 0, 2);
-        grd.add(this.createNewTextField(), 1, 2);
+            grd.add(this.createNewLabel("Category:"), 0, 2);
+            grd.add(this.createNewTextField(item.getItemCategory()), 1, 2);
 
-        grd.add(this.createNewLabel("Destination:"), 0, 3);
-        grd.add(this.createNewTextField(), 1, 3);
+            grd.add(this.createNewLabel("Destination:"), 0, 3);
+            grd.add(this.createNewTextField(item.getItemDestX(), item.getItemDestY()), 1, 3);
 
-        grd.add(this.createNewLabel("Delivered?:"), 0, 4);
-        grd.add(this.createNewTextField(), 1, 4);
+            grd.add(this.createNewLabel("Delivered?:"), 0, 4);
+            grd.add(this.createNewTextField(item.isItemDelivered()), 1, 4);
 
-        grd.add(this.createNewLabel("Priority:"), 0, 5);
-        grd.add(this.createNewTextField(), 1, 5);
+            grd.add(this.createNewLabel("Priority:"), 0, 5);
+            grd.add(this.createNewTextField(item.getItemPriority()), 1, 5);
 
-        grd.setPrefHeight(100);
+            grd.setPrefHeight(100);
 
         return grd;
     }
