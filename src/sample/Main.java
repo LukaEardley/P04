@@ -14,6 +14,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.geometry.Insets;
+
+
+import java.awt.*;
 
 public class Main extends Application {
 
@@ -21,7 +25,7 @@ public class Main extends Application {
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
     primaryStage.setTitle("UWGA Trip Monitoring System");
-    primaryStage.setScene(new Scene(root, 800, 800));
+    primaryStage.setScene(new Scene(root, 1000, 200));
     primaryStage.show();
 
     Accordion accordion = new Accordion();
@@ -58,7 +62,7 @@ public class Main extends Application {
   public GridPane createGridPane() {
 
     GridPane grd = new GridPane();
-    grd.getColumnConstraints().add(new ColumnConstraints(300)); // column 0 is 100 wide
+    grd.getColumnConstraints().add(new ColumnConstraints(300));
     grd.getColumnConstraints().add(new ColumnConstraints(300));
 
     grd.add(this.createNewLabel("ID:"), 0, 0);

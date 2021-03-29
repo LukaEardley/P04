@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="UWGA">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/UWGA.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
