@@ -56,25 +56,22 @@ public class TripPane extends StackPane {
         try {
             Trip trip = TripFileHandler.readTrip(file);
             stackPane.getChildren().remove(0);
-            stackPane.getChildren().add(new Label(trip.getTripID()));
+            //stackPane.getChildren().add(new Label(trip.getTripID()));
             stackPane.getChildren().add(AddAccordions());
         } catch (Exception ex) {
             System.out.println("Oops file not found");
         }
     }
 
-    public GridPane AddAccordions() {
-        GridPane grd = new GridPane();
+    public VBox AddAccordions() {
         Accordion accordion = new Accordion();
 
         TitledPane pane1 = new TitledPane("Trip Information", this.createTripGridPane());
         TitledPane pane2 = new TitledPane("Item Information", this.createItemGridPane());
         accordion.getPanes().add(pane1);
         accordion.getPanes().add(pane2);
-
         VBox vBox = new VBox(accordion);
-        Scene scene = new Scene(vBox);
-        return grd
+        return vBox;
     }
 
 
