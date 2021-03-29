@@ -4,17 +4,19 @@ import csc2a.uwga.file.TripFileHandler;
 import csc2a.uwga.model.Trip;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.Stack;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class TripPane extends StackPane {
 
- private final String dataDirectory = Paths.get("./data/trips").toAbsolutePath().normalize().toString();
+  private final String dataDirectory = Paths.get("./data/trips").toAbsolutePath().normalize().toString();
 
   public TripPane(Stage stage) {
 
@@ -36,7 +38,7 @@ public class TripPane extends StackPane {
           public void handle(final ActionEvent e) {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
-              openFile(file);
+              openFile(file, stackPane);
             }
           }
         });
@@ -46,9 +48,11 @@ public class TripPane extends StackPane {
   }
 
 
-  private void openFile(File file) {
+  private void openFile(File file, StackPane stackPane) {
     try {
       Trip trip = TripFileHandler.readTrip(file);
+      stackPane.getChildren().remove(0);
+      stackPane.getChildren().add(new Label(trip.getTripID()));
     } catch (Exception ex) {
       System.out.println("Oops file not found");
     }
