@@ -1,7 +1,5 @@
 package sample;
 
-import csc2a.uwga.model.Trip;
-import java.awt.Button;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
