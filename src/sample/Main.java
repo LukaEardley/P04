@@ -16,6 +16,7 @@ public class Main extends Application {
     primaryStage.setTitle("UWGA Trip Monitoring System");
     primaryStage.setScene(new Scene(root, 1000, 200));
     TripPane tripPane = new TripPane(primaryStage);
+    primaryStage.setMaximized(true);
     primaryStage.setScene(tripPane.createScene(primaryStage));
     primaryStage.show();
 
